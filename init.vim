@@ -13,10 +13,8 @@ set showcmd                     " 显示操作提示,右下角命令提示
 set ruler                       " 总是显示光标位置
 set laststatus=2                " 总是显示状态栏
 set cmdheight=1                 " 设置命令行的高度
-
 set number                      " 开启行号显示
 set relativenumber              " 开启相对行号
-
 set cursorline                  " 高亮显示当前行
 set whichwrap+=<,>,h,l          " 设置光标键跨行
 set ttimeoutlen=0               " 设置<ESC>键响应时间
@@ -65,7 +63,8 @@ set foldcolumn=0                        " 设置折叠区域的宽度
 setlocal foldlevel=9                    " 设置折叠层数为
 set foldlevelstart=99                   " 打开文件是默认不折叠代码"
 "set foldclose=all                      " 设置为自动关闭折叠                
-nnoremap <space><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>  " 用空格键来开关折叠
+" 用空格 空格来开关折叠
+nnoremap <space><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>  
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索设置
@@ -104,7 +103,6 @@ else
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
 
-
 " load vim default plugin
 runtime macros/matchit.vim
 
@@ -113,8 +111,8 @@ runtime macros/matchit.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编辑vimrc相关配置文件
 nnoremap <leader>e :edit $MYVIMRC<cr>
-nnoremap <leader>sp :edit ~/.config/nvim/plug.set.vim<cr>
-nnoremap <leader>lp :edit ~/.config/nvim/plug.list.vim<cr>
+nnoremap <leader>sp :edit ~/.config/nvim/plugSet.vim<cr>
+nnoremap <leader>lp :edit ~/.config/nvim/plugList.vim<cr>
 
 " 查看vimplus的help文件
 nnoremap <leader>h :view +let\ &l:modifiable=0 ~/.local/share/nvim/help.md<cr>
@@ -144,16 +142,19 @@ nnoremap <leader><leader>p "+p
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
 " 设置python路径
-let g:python_host_prog = '/bin/python'
-let g:python3_host_prog = '/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
+" buffer 切换和关闭
+nmap <leader>d :bp<cr>:bd #<cr>
 
 " 禁用ale的lsp  使用cocnvim的lps
 let g:ale_disable_lsp = 1
 
 " 加载自定义插件
-source $HOME/.config/nvim/plug.list.vim
+source $HOME/.config/nvim/plugList.vim
 " 加载插件设置
-source $HOME/.config/nvim/plug.set.vim
+source $HOME/.config/nvim/plugSet.vim
 
 " 主题设置
 " set background=dark
@@ -184,6 +185,7 @@ let g:lightline = {
 
 " 设置背景透明
 hi Normal ctermfg=252 ctermbg=none
+
 " 大写Q为退出
 map Q :q<CR>
 " 大写W为写入
@@ -191,8 +193,7 @@ map W :w<CR>
 " 使用q跳转到行首、行尾
 noremap <expr>` col(".")==1?"$":"0"
 vnoremap <expr>` col(".")==1?"$h":"0"
-" 添加路径
-set path +=.,/usr/local/include/pcl-1.8
+
 
 " =============
 " === 插入模式
@@ -231,8 +232,6 @@ map <leader>sc :set spell!<cr>
 nnoremap <space>dd :g/^\s*$/d<cr>
 " 多行 -> 一行
 nnoremap <space>dl :g/^\s*$\n\n/d<CR>
-" buffer 切换和关闭
-nmap <leader>d :bp<cr>:bd #<cr>
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
 

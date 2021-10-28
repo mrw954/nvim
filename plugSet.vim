@@ -8,7 +8,7 @@ inoremap <silent> <F10> <esc> :NextColorScheme<cr>
 "Plug 'ap/vim-buftabline'                   " buffer管理
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:buftabline_numbers = 2                " 显示数字编号
-let g:buftabline_show = 1                   " 超过一个标签才显示
+let g:buftabline_show = 2                   " 超过一个标签才显示
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
 nmap <leader>3 <Plug>BufTabLine.Go(3)
@@ -150,9 +150,10 @@ nmap <F11> :ALEToggle<CR>
 nmap <Leader>m :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-            \   'c++': ['clang'],
-            \   'c': ['clang'],
-            \   'python': ['pylint'],
+            \ 'c++': ['clang'],
+            \ 'c': ['clang'],
+            \ 'python': ['pylint'],
+            \ 'go': ['gopls'],
             \}
 
 
@@ -297,11 +298,11 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 let g:cpp_no_function_highlight = 1
 
-"coc.nvim 插件表
+"coc.nvim 插件表及其设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>cy :CocCommand yank.clean<cr>
-let g:coc_global_extensions = ['coc-jedi' ,'coc-solargraph','coc-json','coc-go','coc-clangd','coc-snippets','coc-vimlsp','coc-yank','coc-highlight']
+let g:coc_global_extensions = ['coc-json','coc-go','coc-ccls','coc-snippets','coc-vimlsp','coc-yank','coc-highlight']
 
 let g:markdown_fenced_languages = [
       \ 'vim',
