@@ -124,10 +124,10 @@ nnoremap <leader>H :execute ":help " . expand("<cword>")<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 
 " 分屏窗口移动
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <a-up> <c-w>j
+nnoremap <a-down> <c-w>k
+nnoremap <a-left> <c-w>h
+nnoremap <a-right> <c-w>l
 nnoremap <c-up> <c-w>-
 nnoremap <c-down> <c-w>+
 nnoremap <c-left> <c-w><
